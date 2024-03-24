@@ -1,25 +1,38 @@
-console.log("Hello World");
-
-function playRound(playerSelection, computerSelection) {
-    // your code here!
-// Code that protects against case sensitivity goes here
-// Stuff here might just need to be HTML
-let choice = prompt('rock,paper, or scissors?');
-
-if (playerSelection == computerSelection) {
-    return ("Tie!");
-} else if (
-    (playerSelection === "rock" && computerSelection ==="scissors")||
-    (playerSelection === "scissors" && computerSelection === "paper")||
-    (playerSelection === "paper"&& computerSelection === "rock")
-) {
-    return "You won!" + playerSelection + "beats" + computerSelection;
+function computerPlay() {
+    const choices = ["rock", "paper", "scissors"];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
 }
 
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection.toLowerCase();
+    computerSelection = computerSelection.toLowerCase();
+
+    if (playerSelection === computerSelection) {
+        return "Tie!";
+    } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper")
+    ) {
+        return "You win! " + playerSelection + " beats " + computerSelection;
+    } else {
+        return "You lose! " + computerSelection + " beats " + playerSelection;
+    }
+}
+
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt("Enter your choice: rock, paper, or scissors");
+        const computerSelection = computerPlay();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
+
+// Run the game
+game();
 
 
-
-  }
   
   const playerSelection = "rock";
   const computerSelection = getComputerChoice();
